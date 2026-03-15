@@ -2,7 +2,7 @@ const el = (id) => document.getElementById(id)
 
 let count  = 0;
 let target = 33;
-const RING_CIRCUMFERENCE = 2 * Math.PI * 75; // ~471
+const RING_CIRCUMFERENCE = 2 * Math.PI * 75; 
 const countDisplay = el('countDisplay');
 const targetLabel  = el('targetLabel');
 const ringFill     = el('ringFill');
@@ -96,7 +96,7 @@ function createRipple(e) {
 
 // tombol tambah
 btnTambah.addEventListener('click', (e) => {
-    if (count >= target) return; // sudah terkunci
+    if (count >= target) return; 
     count++;
     triggerBump();
     createRipple(e);
@@ -142,7 +142,7 @@ btnReset.addEventListener('click', () => {
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Space' && document.activeElement.tagName !== 'BUTTON') {
       e.preventDefault();
-      if (count >= target) return; // sudah terkunci
+      if (count >= target) return;
       count++;
       triggerBump();
       updateUI();

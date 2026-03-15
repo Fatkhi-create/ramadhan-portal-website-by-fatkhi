@@ -141,6 +141,7 @@ header {
     border-bottom: 1px solid #c9a84c33;
     background: var(--green-dark);
     position: relative;
+    overflow: hidden;
 }
 header::before, header::after {
     content: '';

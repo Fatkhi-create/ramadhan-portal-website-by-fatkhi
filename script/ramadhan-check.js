@@ -236,10 +236,10 @@ el('btnSavePuasa').addEventListener('click', () => {
 //zikir
 const ZIKIR_KEY = 'todo_dzikir';
 const ZIKIR_LIST = [
-  { id: 'subhanallah', ar: 'سُبْحَانَ اللّٰهِ',    lat: 'Subhanallah',    target: 33 },
-  { id: 'alhamdulillah', ar: 'اَلْحَمْدُ لِلّٰهِ', lat: 'Alhamdulillah',  target: 33 },
-  { id: 'allahuakbar', ar: 'اَللّٰهُ أَكْبَرُ',    lat: 'Allahuakbar',    target: 33 },
-  { id: 'La ilaha illallah', ar: 'لَا إِلٰهَ إِلَّا اللّٰهُ',   lat: 'La ilaha illallah', target: 33 },
+  { id: 'tasbih', ar: 'سُبْحَانَ اللّٰهِ',    lat: 'Subhanallah',    target: 33 },
+  { id: 'tahmid', ar: 'اَلْحَمْدُ لِلّٰهِ', lat: 'Alhamdulillah',  target: 33 },
+  { id: 'takbir', ar: 'اَللّٰهُ أَكْبَرُ',    lat: 'Allahuakbar',    target: 33 },
+  { id: 'tahlil', ar: 'لَا إِلٰهَ إِلَّا اللّٰهُ',   lat: 'La ilaha illallah', target: 33 },
 ];
 const Z_RING_CIRC = 2 * Math.PI * 75;
 

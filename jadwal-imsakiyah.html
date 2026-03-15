@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jadwal Imsakiyah Ramadhan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style/jadwal-imsakiyah.css">
+</head>
+<body>
+<header>
+    <nav class="navbar" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">☽ Ramadhan Portal</a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="jadwal-imsakiyah.html" class="active">Jadwal Imsakiyah</a></li>
+                <li><a href="doa-sahur-dan-berbuka.html"> Doa Sahur Dan Berbuka</a></li> 
+                <li><a href="hitung-zikir.html">Hitung Zikir</a></li>
+                <li><a href="kalkulator-zakat.html">Kalkulator Zakat</a></li>
+                <li><a href="ramadhan-check.html">Ramadhan Check</a></li>
+            </ul>
+        </div>
+    </nav>
+</header> 
+<header>
+    <div class="header-inner">
+        <span class="header-icon">🕌</span>
+        <h1>Jadwal Imsakiyah</h1>
+        <p class="subtitle">Jadwal sholat &amp; imsak Ramadhan </p>
+        <div class="cahaya">
+            <span></span><i>✦</i><span></span>
+        </div>
+        <div class="header-tanggal">
+            <div class="tgl-box">
+                <span class="tgl-label"> Tanggal Hari ini</span>
+                <span class="tgl-value" id="tglMasehi">—</span>
+                <span class="tgl-label"> </span>
+                <span class="tgl-value" id="tglHijriyah">—</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main style="padding-top: 4.5rem;">
+    <section class="card">
+        <h2 class="card-title" id="filter-title">Pilih Kota</h2>
+        <div class="filter-row">
+            <div class="field kota-search-wrap">
+                <label for="kotaSearchInput">Cari Kota</label>
+                <input type="text" id="kotaSearchInput" class="kota-search-input" placeholder="Ketik nama kota/kab" autocomplete="off"/>            
+                <div class="kota-dropdown" id="kotaDropdown" role="listbox"></div>
+                <div class="kota-selected-chip" id="kotaChip">
+                    <span id="kotaChipText">—</span>
+                    <button class="chip-clear" id="kotaChipClear" title="Hapus pilihan">✕</button>
+                </div>
+            </div>
+            <div class="field">
+                <label for="bulanSelect">Bulan</label>
+                <select id="bulanSelect">
+                    <option value="01">Januari</option>
+                    <option value="02">Februari</option>
+                    <option value="03" selected>Maret</option>
+                    <option value="04">April</option>
+                    <option value="05">Mei</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">Agustus</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Desember</option>
+                </select>
+            </div>
+            <div class="field" style="max-width:110px;">
+                <label for="tahunSelect">Tahun</label>
+                <select id="tahunSelect"></select>
+            </div>
+            <button class="btn-fetch" id="btnFetch" disabled>Tampilkan</button>
+        </div>
+        <div class="kota-info" id="kotaInfo" style="margin-top:.9rem;">
+        
+            <span id="kotaInfoText"></span>
+        </div>
+    </section>
+
+    <section class="card" id="waktuCard" style="display:none;">
+        <h2 class="card-title">Waktu Sholat Hari Ini</h2>
+        <div class="waktu-sekarang" id="waktuSekarang"></div>
+    </section>
+
+    <section class="card">
+        <h2 class="card-title" id="table-title">Jadwal Imsakiyah</h2>
+        <div class="state-box state-empty show" id="stateEmpty">
+            <p class="state-text">Pilih kota dan klik Tampilkan untuk melihat jadwal imsakiyah.</p>
+        </div>
+        <div class="state-box state-loading" id="stateLoading">
+            <div class="spinner"></div>
+            <p class="state-text">Memuat data jadwal imsakiyah…</p>
+        </div>
+        <div class="state-box state-error" id="stateError">
+            <span class="state-icon">⚠️</span>
+            <p class="state-text" id="errorText">Gagal memuat data. Periksa koneksi internet Anda.</p>
+        </div>
+        <div class="table-wrap" id="tableWrap">
+            <table aria-label="Jadwal imsakiyah">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Imsak</th>
+                        <th>Subuh</th>
+                        <th>Terbit</th>
+                        <th>Dhuha</th>
+                        <th>Dzuhur</th>
+                        <th>Ashar</th>
+                        <th>Maghrib</th>
+                        <th>Isya</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p class="footer-teks">✦ Jadwal imsakiyah dibulan Ramadhan ✦</p>
+    <p>"Semoga amal ibadah kita diterima Allah SWT &amp; mendapatkan keberkahan di bulan suci ini."</p>
+    <p style="margin-top:.5rem; font-size:.78rem; opacity:.5;">&copy; 2026 Web Ramadhan | Made by Fatkhi</p>
+</footer>
+
+<script src="script/jadwal-imsakiyah.js"></script>
+</body>
+</html>

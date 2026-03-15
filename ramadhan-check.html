@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramadhan Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style/ramadhan-check.css">
+</head>
+<body>
+<header>
+    <nav class="navbar" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">☽ Ramadhan Portal</a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="list">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="jadwal-imsakiyah.html">Jadwal Imsakiyah</a></li>
+                <li><a href="doa-sahur-dan-berbuka.html"> Doa Sahur Dan Berbuka</a></li> 
+                <li><a href="hitung-zikir.html">Hitung Zikir</a></li>
+                <li><a href="kalkulator-zakat.html" >Kalkulator Zakat</a></li>
+                <li><a href="ramadhan-check.html" class="active">Ramadhan Check</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>  
+<header>
+    <div class="header-inner">
+        <span class="header-logo">🌙</span>
+        <h1>Ramadhan Checker</h1>
+        <p class="subtitle">Pantau & tingkatkan ibadah harianmu</p>
+    </div>
+</header>
+
+<div class="progress">
+    <div class="progress-item">
+        <span class="progress-pct" id="pctShalat">0%</span>
+        <span class="progress-lbl">Shalat</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-item">
+        <span class="progress-pct" id="pctQuran">0%</span>
+        <span class="progress-lbl">Qur'an</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-item">
+        <span class="progress-pct" id="pctPuasa">0%</span>
+        <span class="progress-lbl">Puasa</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="progress-item">
+        <span class="progress-pct" id="pctDzikir">0%</span>
+        <span class="progress-lbl">Dzikir</span>
+    </div>
+    <div class="progress-divider"></div>
+    <div class="motivasi-badge" id="motivasiGlobal">✨ Mulai lagi hari ini!</div>
+</div>
+
+<nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-tab="shalat" role="tab">
+        <span class="tab-icon">🕌</span> Shalat
+    </button>
+    <button class="tab-btn" data-tab="quran" role="tab">
+        <span class="tab-icon">📖</span> Qur'an
+    </button>
+    <button class="tab-btn" data-tab="puasa" role="tab">
+        <span class="tab-icon">🌙</span> Puasa
+    </button>
+    <button class="tab-btn" data-tab="dzikir" role="tab">
+        <span class="tab-icon">📿</span> Dzikir
+    </button>
+</nav>
+
+<main>
+    <div class="tab-panel active" id="tab-shalat">
+        <div class="card">
+            <h2 class="card-title">🕌 Shalat Wajib Hari Ini</h2>
+            <div class="prog-meta">
+                <span>Progress</span>
+                <span class="prog-pct" id="shalatPct">0%</span>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-fill" id="shalatBar" style="width:0%"></div>
+            </div>
+            <div style="margin-bottom:1rem;">
+                <span class="status-chip chip-low" id="shalatStatus">Belum optimal</span>
+            </div>
+            <ul class="shalat-list" id="shalatList">
+                <li class="shalat-item" data-id="subuh">
+                    <div class="shalat-cb">✓</div>
+                    <span class="shalat-name">Subuh</span>
+                    <span class="shalat-time">04:30 – 05:45</span>
+                </li>
+                <li class="shalat-item" data-id="dzuhur">
+                    <div class="shalat-cb">✓</div>
+                    <span class="shalat-name">Dzuhur</span>
+                    <span class="shalat-time">11:45 – 14:30</span>
+                </li>
+                <li class="shalat-item" data-id="ashar">
+                    <div class="shalat-cb">✓</div>
+                    <span class="shalat-name">Ashar</span>
+                    <span class="shalat-time">14:45 – 17:30</span>
+                </li>
+                <li class="shalat-item" data-id="maghrib">
+                    <div class="shalat-cb">✓</div>
+                    <span class="shalat-name">Maghrib</span>
+                    <span class="shalat-time">17:45 – 19:00</span>
+                </li>
+                <li class="shalat-item" data-id="isya">
+                    <div class="shalat-cb">✓</div>
+                    <span class="shalat-name">Isya</span>
+                    <span class="shalat-time">19:15 – 04:00</span>
+                </li>
+            </ul>
+            <button class="btn-save" id="btnSaveShalat">Simpan Shalat</button>
+            <p class="saved-toast" id="toastShalat"> Data shalat tersimpan!✅</p>
+        </div>
+     </div>
+
+    <div class="tab-panel" id="tab-quran">
+        <div class="card">
+            <h2 class="card-title">📖 Baca Qur'an</h2>
+            <div class="prog-meta">
+                <span>Progress Membaca</span>
+                <span class="prog-pct" id="quranPct">0%</span>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-fill" id="quranBar" style="width:0%"></div>
+            </div>
+            <div style="margin-bottom:1rem;">
+                <span class="status-chip chip-low" id="quranStatus">Masih bisa ditambah</span>
+            </div>
+            <div class="quran-inputs">
+                <div class="field">
+                    <label for="targetHalaman">Target Halaman</label>
+                    <input type="number" id="targetHalaman" placeholder="misal: 20" min="1" />
+                </div>
+                <div class="field">
+                    <label for="halamanDibaca">Sudah Dibaca</label>
+                    <input type="number" id="halamanDibaca" placeholder="misal: 10" min="0" />
+                </div>
+            </div>
+            <label class="quran-mark" id="quranMarkLabel">
+                <input type="checkbox" id="quranSelesai" />
+                <span>Tandai target hari ini selesai ✓</span>
+            </label>
+            <button class="btn-save" id="btnSaveQuran">Simpan Progress Qur'an</button>
+            <p class="saved-toast" id="toastQuran">Data Qur'an tersimpan!✅</p>
+        </div>
+    </div>
+
+    <div class="tab-panel" id="tab-puasa">
+        <div class="card">
+            <h2 class="card-title">🌙 Kalender Puasa Ramadhan</h2>
+
+            <div class="hari-ke">
+                <div class="hk-num" id="hariKeNum">—</div>
+                <div class="hk-label">Hari Ramadhan</div>
+            </div>
+
+            <div class="prog-meta">
+                <span>Progress 30 Hari</span>
+                <span class="prog-pct" id="puasaPct">0%</span>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-fill" id="puasaBar" style="width:0%"></div>
+            </div>
+            <div style="margin-bottom:1rem;">
+                <span class="status-chip chip-low" id="puasaStatus">Semangat berpuasa! 💪</span>
+            </div>
+
+            <label class="puasa-today" id="puasaTodayLabel">
+                <input type="checkbox" id="puasaHariIni" />
+                <span id="puasaTodayText">Sudah puasa hari ini?</span>
+            </label>
+
+            <div class="kalender-grid" id="kalenderGrid"></div>
+
+            <button class="btn-save" id="btnSavePuasa">Simpan Data Puasa</button>
+            <p class="saved-toast" id="toastPuasa"> Data puasa tersimpan!✅</p>
+        </div>
+     </div>
+
+    <div class="tab-panel" id="tab-dzikir">
+        <div class="card">
+            <h2 class="card-title">📿 Zikir Harian</h2>
+            <div class="prog-meta">
+                <span>Zikir Selesai</span>
+                <span class="prog-pct" id="zikirPct">0%</span>
+            </div>
+            <div class="prog-wrap">
+                <div class="prog-fill" id="zikirBar" style="width:0%"></div>
+            </div>
+            <div style="margin-bottom:1.2rem;">
+                <span class="status-chip chip-low" id="zikirStatus">Belum optimal</span>
+            </div>
+            <div class="zikir-selector" role="group">
+                <button class="zikir-btn active" data-ar="سُبْحَانَ اللّٰهِ" data-lat="Subhanallah" data-id="subhanallah">Tasbih</button>
+                <button class="zikir-btn" data-ar="اَلْحَمْدُ لِلّٰهِ" data-lat="Alhamdulillah" data-id="alhamdulillah">Tahmid</button>
+                <button class="zikir-btn" data-ar="اَللّٰهُ أَكْبَرُ" data-lat="Allahuakbar" data-id="allahuakbar">Takbir</button>
+                <button class="zikir-btn" data-ar="لَا إِلٰهَ إِلَّا اللّٰهُ" data-lat="La ilaha illallah" data-id="la-ilaha-illallah">Tahlil</button>
+            </div>
+            <p class="zikir-arabic" id="zikirArabic">سُبْحَانَ اللّٰهِ</p>
+            <p class="zikir-latin"  id="zikirLatin">Subhanallah</p>
+
+            <div class="zikir-ring-wrap">
+                <svg class="zikir-ring-svg" width="150" height="150" viewBox="0 0 160 160" aria-hidden="true">
+                    <circle class="zikir-ring-bg"   cx="80" cy="80" r="75"/>
+                    <circle class="zikir-ring-fill" id="zikirRingFill" cx="80" cy="80" r="75"/>
+                </svg>
+                <div class="zikir-ring-center">
+                    <span class="zikir-count-num" id="zikirCountNum">0</span>
+                    <span class="zikir-target-lbl" id="zikirTargetLbl">/ 33</span>
+                </div>
+            </div>
+            <div class="zikir-bar-wrap">
+                <div class="zikir-bar-fill" id="zikirBarFill"></div>
+            </div>
+
+            <p class="zikir-locked-hint" id="zikirLockedHint">Reset atau ubah target untuk lanjut</p>
+
+            <div class="zikir-btn-group">
+                <button class="zikir-btn-tambah" id="zikirBtnTambah" aria-label="Tambah hitungan dzikir">
+                    <span class="zikir-icon">+</span>
+                </button>
+                <button class="zikir-btn-reset" id="zikirBtnReset">↺ Reset</button>
+            </div>
+            <div class="zikir-pills">
+                <span>Target:</span>
+                <button class="zikir-pill active" data-val="33">33×</button>
+                <button class="zikir-pill" data-val="99">99×</button>
+                <button class="zikir-pill" data-val="100">100×</button>
+                <button class="zikir-pill" data-val="200">200×</button>
+            </div>
+
+            <div class="zikir-notif" id="zikirNotif" role="status" aria-live="polite">
+                <span class="zikir-star">✦</span>
+                <span id="zikirNotifText">Target tercapai! Alhamdulillah 🤲</span>
+                <span class="zikir-star">✦</span>
+            </div>
+            <button class="btn-save" id="btnSaveZikir">Simpan Dzikir</button>
+            <p class="saved-toast" id="toastZikir"> Data dzikir tersimpan!✅</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+  <p class="footer-teks">✦ Pengingat ibadah dibulan Ramadhan ✦</p>
+  <p>"Semoga puasa kita diterima Allah SWT &amp; mendapatkan keberkahan di bulan suci ini."</p>
+  <p style="margin-top:.5rem; font-size:.78rem; opacity:.5;">&copy; 2026 Web Ramadhan | Made by Fatkhi</p>
+</footer>
+
+<script src="script/ramadhan-check.js"></script>
+
+</body>
+</html>

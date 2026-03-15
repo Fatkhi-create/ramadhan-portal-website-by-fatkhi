@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Zakat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style/kalkulator-zakat.css">
+</head>
+<body>
+<header>
+    <nav class="navbar" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">☽ Ramadhan Portal</a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="list">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="jadwal-imsakiyah.html">Jadwal Imsakiyah</a></li>
+                <li><a href="doa-sahur-dan-berbuka.html"> Doa Sahur Dan Berbuka</a></li> 
+                <li><a href="hitung-zikir.html">Hitung Zikir</a></li>
+                <li><a href="kalkulator-zakat.html" class="active">Kalkulator Zakat</a></li>
+                <li><a href="ramadhan-check.html">Ramadhan Check</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>    
+<header>
+    <h1>Kalkulator Zakat</h1>
+    <p class="subtitle">Hitung zakat penghasilan &amp; emas secara otomatis</p>
+    <div class="cahaya">
+        <span></span><i>✦</i><span></span>
+    </div>
+</header>
+<main>
+    <section class="card">
+        <h2 class="card-title-1" id="jenis-title">Jenis Zakat</h2>
+        
+        <div class="pilihan">
+            <label for="jenisZakat">Pilih Jenis Zakat</label>
+            <select id="jenisZakat">
+                <option value="penghasilan">Zakat Penghasilan</option>
+                <option value="emas">Zakat Emas</option>
+            </select>
+        </div>
+        <div class="pilihan">
+            <label for="hargaEmas">Harga Emas per Gram (Rp)</label>
+            <div class="input-prefix-wrap">
+                <span class="input-prefix">Rp</span>
+                <input type="number" id="hargaEmas" placeholder="contoh: 1.350.000" min="0" step="1000" />
+            </div>
+        </div>
+        <div class="info-box" id="nisabInfo">
+            Masukkan harga emas untuk menghitung <strong>Nisab</strong> (harga emas × 85 gram).
+        </div>
+        <h2 class="card-title-2" id="form-title">Data kepemilikan</h2>
+        <div class="form-section active" id="formPenghasilan">
+            <div class="pilihan">
+            <label for="gaji">Gaji / Upah Bulanan (Rp)</label>
+                <div class="input-prefix-wrap">
+                    <span class="input-prefix">Rp</span>
+                    <input type="number" id="gaji" placeholder="contoh: 5.000.000" min="0" />
+                </div>
+            </div>
+            <div class="pilihan">
+            <label for="penghasilanLain">Penghasilan Lain (Rp) <span style="font-weight:400;opacity:.6">– opsional</span></label>
+                <div class="input-prefix-wrap">
+                    <span class="input-prefix">Rp</span>
+                    <input type="number" id="penghasilanLain" placeholder="bonus, freelance, dll." min="0" />
+                </div>
+            </div>
+        </div>
+        <div class="form-section" id="formEmas">
+            <div class="pilihan">
+            <label for="jumlahEmas">Total Emas yang Dimiliki (gram)</label>
+                <div class="input-suffix-wrap">
+                    <input type="number" id="jumlahEmas" placeholder="contoh: 100" min="0" step="0.01" />
+                    <span class="input-suffix">gram</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-divider"></div>
+        <button class="btn-hitung" id="btnHitung">Hitung Zakat</button>
+        <button class="btn-reset-calc" id="btnResetCalc">↺ Reset Form</button>
+        <div class="error-msg" id="errorMsg" role="alert"></div>
+    </section>
+
+    <section class="card"  id="hasilCard" style="display:none;">
+        <h2 class="card-title-3" id="hasil-title">Hasil Perhitungan</h2>
+        <div class="result-box show" id="resultBox">
+            <div class="result-row">
+                <span class="result-label">Jenis Zakat</span>
+                <span class="result-value" id="resJenis">—</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Total Harta / Penghasilan</span>
+                <span class="result-value" id="resTotal">—</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Nilai Nisab (85 gram emas)</span>
+                <span class="result-value" id="resNisab">—</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Status Kewajiban</span>
+                <span class="result-value" id="resStatus">—</span>
+            </div>
+        </div>
+        <div class="zakat-highlight" id="zakatHighlight" style="display:none;">
+            <div>
+                <div class="zh-label">Zakat yang Harus Dibayarkan (2.5%)</div>
+                <div class="zh-amount" id="resZakat">—</div>
+            </div>
+            <div class="zh-note">Segera tunaikan zakat Anda melalui lembaga terpercaya.</div>
+        </div>
+        <div class="tidak-wajib-box" id="tidakWajibBox" style="display:none;">
+            Harta Anda belum mencapai nisab. Anda <strong>belum wajib</strong> membayar zakat saat ini. 
+        </div>
+    </section>
+</main>
+<footer>
+  <p class="footer-teks">✦ Zakat dibulan Ramadhan ✦</p>
+  <p>"Semoga puasa kita diterima Allah SWT &amp; mendapatkan keberkahan di bulan suci ini."</p>
+  <p style="margin-top:.5rem; font-size:.78rem; opacity:.5;">&copy; 2026 Web Ramadhan | Made by Fatkhi</p>
+</footer>
+<script src="script/kalkulator-zakat.js"></script>
+</body>
+</html>
+    

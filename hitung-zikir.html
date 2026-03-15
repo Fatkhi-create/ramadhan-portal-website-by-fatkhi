@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitung Zikir </title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style/hitung-zikir.css">
+</head> 
+<body>
+<header>
+    <nav class="navbar" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">☽ Ramadhan Portal</a>
+            <button class="nav-toggle" id="navToggle" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="list">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="jadwal-imsakiyah.html">Jadwal Imsakiyah</a></li>
+                <li><a href="doa-sahur-dan-berbuka.html"> Doa Sahur Dan Berbuka</a></li> 
+                <li><a href="hitung-zikir.html" class="active">Hitung Zikir</a></li>
+                <li><a href="kalkulator-zakat.html">Kalkulator Zakat</a></li>
+                <li><a href="ramadhan-check.html">Ramadhan Check</a></li>
+            </ul>
+        </div>
+    </nav>
+</header> 
+<header>
+    <div class="header-top">
+        <span class="bulan-sabit">☽</span>
+        <h1>Hitung Zikir</h1>
+        <span class="bulan-sabit" style="transform:scaleX(-1); display:inline-block;">☽</span>
+    </div>
+        <p class="subtitle">Perbanyak dzikir, raih keberkahan Ramadhan</p>
+</header>
+
+<main>
+    <section>
+        <div class="kotak-body">
+            <div class="zikir-selector" role="group" aria-label="Pilih dzikir">
+                <button class="zikir-btn active" data-ar="سُبْحَانَ اللّٰهِ" data-lat="Subhanallah">Tasbih</button>
+                <button class="zikir-btn" data-ar="اَلْحَمْدُ لِلّٰهِ" data-lat="Alhamdulillah">Tahmid</button>
+                <button class="zikir-btn" data-ar="اَللّٰهُ أَكْبَرُ" data-lat="Allahuakbar">Takbir</button>
+                <button class="zikir-btn" data-ar="لَا إِلٰهَ إِلَّا اللّٰهُ" data-lat="La ilaha illallah">Tahlil</button>
+            </div>
+
+            <p class="zikir-arabic" id="zikirArabic">سُبْحَانَ اللّٰهِ</p>
+            <p class="zikir-latin" id="zikirLatin">Subhanallah</p>
+
+            <div class="progress-wrap">
+                <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160" aria-hidden="true">
+                    <circle class="ring-bg" cx="80" cy="80" r="75"/>
+                    <circle class="ring-fill" id="ringFill" cx="80" cy="80" r="75"/>
+                </svg>
+                <div class="ring-center">
+                    <span class="count-display" id="countDisplay">0</span>
+                    <span class="target-label" id="targetLabel">/ 33</span>
+                </div>
+            </div>
+            <div class="progress-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0" id="progressBar" aria-label="Progress dzikir">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+
+            <p class="berhenti" id="berhenti">Reset atau ubah target untuk lanjut</p>
+
+            <div class="btn-group">
+                <button class="btn-tambah" id="btnTambah" aria-label="Tambah hitungan dzikir">
+                    <span class="btn-icon">+</span>
+                </button>
+                <button class="btn-reset" id="btnReset" aria-label="Reset hitungan">↺ Reset</button>
+            </div>
+            <div class="target-selector">
+                <span>Target:</span>
+                <button class="target-pill active" data-val="33">33×</button>
+                <button class="target-pill" data-val="99">99×</button>
+                <button class="target-pill" data-val="100">100×</button>
+                <button class="target-pill" data-val="200">200×</button>
+            </div>
+            <div class="notif-area" role="status" aria-live="polite">
+                <div class="notif-badge" id="notifBadge">
+                    <span class="star">✦</span>
+                    <span id="notifText">Target tercapai! Alhamdulillah 🤲</span>
+                    <span class="star">✦</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+  <p class="footer-teks">✦ Zikir dibulan Ramadhan ✦</p>
+  <p>"Semoga Ibadah kita diterima Allah SWT &amp; mendapatkan keberkahan di bulan suci ini."</p>
+  <p style="margin-top:.5rem; font-size:.78rem; opacity:.5;">&copy; 2026 Web Ramadhan | Made by Fatkhi</p>
+</footer>
+<script src="script/hitung-zikir.js"></script>
+</body>

@@ -159,15 +159,9 @@ el('btnSaveQuran').addEventListener('click', () => {
 });
 
 //puasa
-const PUASA_KEY  = 'todo_puasa';
-const RAMADHAN_START = new Date(2025, 2, 1); // 1 Maret 2025 (contoh)
+const PUASA_KEY  = 'todo_puasa'; 
 let puasaData = LS(PUASA_KEY) || { hari: {} };
 
-function getHariKe() {
-  const now  = new Date();
-  const diff = Math.floor((now - RAMADHAN_START) / (1000 * 60 * 60 * 24)) + 1;
-  return Math.max(1, Math.min(diff, 30));
-}
 
 function getPuasaPct() {
   const done = Object.values(puasaData.hari).filter(Boolean).length;
@@ -175,13 +169,13 @@ function getPuasaPct() {
 }
 
 function renderPuasa() {
-  const hariKe = getHariKe();
-  el('hariKeNum').textContent = hariKe;
+  const done = Object.values(puasaData.hari).filter(Boolean).length;
+  const hariKeEl = el('hariKeNum');
+  if (hariKeEl) hariKeEl.textContent =done;
 
   const pct = getPuasaPct();
   setBar('puasaBar', 'puasaPct', pct);
 
-  const done = Object.values(puasaData.hari).filter(Boolean).length;
   const chip = el('puasaStatus');
   chip.className = 'status-chip';
   if (done === 30)       { chip.classList.add('chip-done'); chip.textContent = 'Alhamdulillah, puasa sempurna! 🏆'; }
@@ -189,12 +183,13 @@ function renderPuasa() {
   else                   { chip.classList.add('chip-low');  chip.textContent = 'Semangat berpuasa! 💪'; }
 
 //Checkbox hari ini
-  const todayDone = !!puasaData.hari[hariKe];
+  const nextHari = Math.min(done + 1, 30);
+  const todayDone = done === 30;
   el('puasaHariIni').checked = todayDone;
   el('puasaTodayLabel').classList.toggle('done', todayDone);
   el('puasaTodayText').textContent = todayDone
-    ? `✅ Alhamdulillah, sudah puasa hari ke-${hariKe}!`
-    : `Sudah puasa hari ini? (Hari ke-${hariKe})`;
+    ? `✅ Alhamdulillah, puasa Full 30 Hari!`
+    : `Sudah puasa hari ini? (Hari ke-${nextHari})`;
 
 //Render kalender
   const grid = el('kalenderGrid');
@@ -208,11 +203,8 @@ function renderPuasa() {
     } else {
       div.textContent = i;
     }
-    if (i === hariKe) div.classList.add('today-mark');
-    if (i > hariKe)   div.classList.add('future');
-
+    
     div.addEventListener('click', () => {
-      if (i > hariKe) return;
       puasaData.hari[i] = !puasaData.hari[i];
       renderPuasa();
       updateGlobal();
@@ -223,8 +215,16 @@ function renderPuasa() {
 }
 
 el('puasaHariIni').addEventListener('change', () => {
-  const hariKe = getHariKe();
-  puasaData.hari[hariKe] = el('puasaHariIni').checked;
+  const done = Object.values(puasaData.hari).filter(Boolean).length;
+  const nextHari = Math.min(done + 1, 30);
+  const checked = el('puasaHariIni').checked;
+  if (checked) {
+    puasaData.hari[nextHari] = true;
+  } else {
+    for (let i = 30; i >= 1; i--) {
+      if (puasaData.hari[i]) { puasaData.hari[i] = false; break;}
+    }
+  }
   renderPuasa();
 });
 

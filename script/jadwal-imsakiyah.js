@@ -59,7 +59,7 @@ const TODAY     = new Date();
 const TODAY_ISO = TODAY.toISOString().slice(0, 10);
 
 //lokasi
-let selectedKota = null; // { id, lokasi, daerah }
+let selectedKota = null; 
 let searchTimer  = null;
 
 //element
